@@ -15,15 +15,15 @@ import {
 
 const regions = ["서울/인천/경기", "대전/충청", "광주/전남", "전북", "대구/경북", "부산/울산/경남", "강원", "제주"];
 const companyTypes = {
-  A: [{ name: "보장분석/일반", price: 80000, description: "보장분석 / 다양한 연령대 / 3주 이내 납품 완료 DB"  }],
+  A: [{ name: "보장분석/일반", price: 70000, originalPrice: 80000, specialOffer: "12월 특가", description: "보장분석 / 다양한 연령대 / 신청월 내 공급"  }],
   B: [
     { name: "3주납품", price: 75000, description: "보장분석 / 다양한 연령대 / 3주 이내 납품 완료 DB" },
-    { name: "실버", price: 50000, description: "보장분석 / 보험 니즈 높은 고연령대 / 3주 이내 납품 완료 DB"  },
-    { name: "중장년", price: 85000, description: "보장분석 / 보험 관심 높은 중장년 / 3주 이내 납품 완료 DB"  },
-    { name: "여성100%", price: 80000, description: "보장분석 / 보험 니즈가 높은 여성 / 3주 이내 납품 완료 DB"  },
-    { name: "보험료20만원이상", price: 85000, description: "보장분석 / 보험료 20만원 이상 납입 / 3주 이내 납품 완료 DB"  },
-    { name: "방문확정", price: 90000, description: "보장분석 / 시간,장소 약속이 확정된 / 3주 이내 납품 완료 DB"  },
-    { name: "화재보험", price: 75000, description: "보장분석 / 화재보험(1년/일반화재) 무료가입 멘트로 확보된 / 3주 이내 납품 완료 DB / 보험료 1만원 설계사 부담"  },
+    { name: "실버", price: 50000, description: "보장분석 / 보험 니즈 높은 고연령대 / 신청월 내 공급"  },
+    { name: "중장년", price: 85000, description: "보장분석 / 보험 관심 높은 중장년 / 신청월 내 공급"  },
+    { name: "여성100%", price: 80000, description: "보장분석 / 보험 니즈가 높은 여성 / 신청월 내 공급"  },
+    { name: "보험료20만원이상", price: 85000, description: "보장분석 / 보험료 20만원 이상 납입 / 신청월 내 공급"  },
+    { name: "방문확정", price: 90000, description: "보장분석 / 시간,장소 약속이 확정된 / 신청월 내 공급"  },
+    { name: "화재보험", price: 75000, description: "보장분석 / 화재보험(1년/일반화재) 무료가입 멘트로 확보된 / 신청월 내 공급 / 보험료 1만원 설계사 부담"  },
   ]
 };
 
@@ -118,7 +118,20 @@ const CheckboxList = React.memo(({ selections, onCheckboxChange }) => {
                 <AccordionItem value={type.name} key={type.name}>
                   <AccordionTrigger>
                     <div className="text-left">
-                      <div className="font-bold text-lg">{type.name} ({type.price.toLocaleString()}원)</div>
+                      <div className="font-bold text-lg">
+                        {type.name} (
+                        {type.originalPrice && (
+                          <>
+                            <span className="line-through text-gray-400">{type.originalPrice.toLocaleString()}원</span>
+                            {' → '}
+                          </>
+                        )}
+                        {type.price.toLocaleString()}원
+                        {type.specialOffer && (
+                          <span className="ml-2 text-sm font-semibold text-red-600">🎉 {type.specialOffer}</span>
+                        )}
+                        )
+                      </div>
                       {type.description && <p className="text-sm text-gray-600 mt-1">{type.description}</p>}
                     </div>
                   </AccordionTrigger>
