@@ -28,7 +28,7 @@ try {
 
 // Configure CORS to allow requests from the Vercel deployment and localhost
 app.use(cors({
-  origin: ['https://db-request-ext.vercel.app', 'http://localhost:5173', 'http://localhost:8080', 'http://localhost:8081']
+  origin: ['https://db-request-int.vercel.app', 'http://localhost:5173', 'http://localhost:8080', 'http://localhost:8081']
 }));
 app.use(bodyParser.json());
 

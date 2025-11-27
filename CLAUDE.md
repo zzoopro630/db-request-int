@@ -199,7 +199,7 @@ The project uses path aliases configured in `vite.config.js`:
 - Frontend and backend deployed as single Vercel project
 - API routes in `api/` folder become serverless functions
 - Environment variables must be configured in Vercel dashboard
-- CORS configured for production domain: `https://db-request-ext.vercel.app`
+- CORS configured for production domain: `https://db-request-int.vercel.app`
 
 **Frontend-Backend Communication**:
 - `resolveApiBaseUrl()` function in `Index.jsx` auto-detects environment
